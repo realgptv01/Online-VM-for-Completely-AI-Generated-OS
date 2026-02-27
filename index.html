@@ -2,27 +2,38 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>My AI OS VM</title>
+    <title>AI OS VM</title>
 </head>
-<body style="background-color: #222; color: white;">
+<body style="background-color: #000; color: #0f0; font-family: monospace;">
 
     <div id="screen_container">
-        <div style="white-space: pre; font-family: monospace"></div>
+        <div style="white-space: pre;"></div>
         <canvas style="display: none"></canvas>
     </div>
-<script src="libv86.js"></script>
-<script>
-    window.onload = function() {
-        var emulator = new V86Starter({
-            wasm_path: "v86.wasm",
-            memory_size: 128 * 1024 * 1024, 
-            vga_bios: { url: "VGABIOS-lgpl-latest.bin" }, 
-            bios: { url: "seabios.bin" },
-            cdrom: { url: "myos.iso" }, 
-            autostart: true,
-            screen_container: document.getElementById("screen_container"),
-        });
-    };
-</script>
+
+    <script src="libv86.js"></script>
+    
+    <script>
+        window.onload = function() {
+            // Check if library actually loaded
+            if (typeof V86Starter === "undefined") {
+                console.error("FAILED: libv86.js did not load. Check your file paths!");
+                return;
+            }
+
+            var emulator = new V86Starter({
+                wasm_path: "v86.wasm",
+                memory_size: 128 * 1024 * 1024,
+                // Make sure you uploaded this file from your .tgz!
+                vga_bios: { url: "VGABIOS-lgpl-latest.bin" }, 
+                bios: { url: "seabios.bin" },
+                cdrom: { url: "myos.iso" },
+                autostart: true,
+                screen_container: document.getElementById("screen_container"),
+            });
+            
+            console.log("VM Started Successfully!");
+        };
+    </script>
 </body>
 </html>
