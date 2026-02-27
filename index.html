@@ -1,30 +1,14 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>My AI OS VM</title>
-</head>
-<body style="background-color: #222; color: white;">
-
-    <div id="screen_container">
-        <div style="white-space: pre; font-family: monospace"></div>
-        <canvas style="display: none"></canvas>
-    </div>
-
-    <script src="libv86.js"></script>
-    <script>
-        window.onload = function() {
-            var emulator = new V86Starter({
-                wasm_path: "v86.wasm",
-                memory_size: 128 * 1024 * 1024, 
-                // Matches the file you found in the tgz
-                vga_bios: { url: "VGABIOS-lgpl-latest.bin" }, 
-                bios: { url: "seabios.bin" },
-                cdrom: { url: "myos.iso" }, 
-                autostart: true,
-                screen_container: document.getElementById("screen_container"),
-            });
-        };
-    </script>
-</body>
-</html>
+<script src="libv86.js"></script>
+<script>
+    window.onload = function() {
+        var emulator = new V86Starter({
+            wasm_path: "v86.wasm",
+            memory_size: 128 * 1024 * 1024, 
+            vga_bios: { url: "vgabios.bin" }, 
+            bios: { url: "seabios.bin" },
+            cdrom: { url: "myos.iso" }, 
+            autostart: true,
+            screen_container: document.getElementById("screen_container"),
+        });
+    };
+</script>
