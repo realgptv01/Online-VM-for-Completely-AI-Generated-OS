@@ -17,9 +17,10 @@
             var emulator = new V86Starter({
                 wasm_path: "v86.wasm",
                 memory_size: 128 * 1024 * 1024, 
-                vga_bios: { url: "vgabios.bin" },
+                // Matches the file you found in the tgz
+                vga_bios: { url: "VGABIOS-lgpl-latest.bin" }, 
                 bios: { url: "seabios.bin" },
-                cdrom: { url: "/myos.iso" }, 
+                cdrom: { url: "myos.iso" }, 
                 autostart: true,
                 screen_container: document.getElementById("screen_container"),
             });
