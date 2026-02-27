@@ -1,0 +1,19 @@
+<div id="screen_container">
+    <div style="white-space: pre; font-family: monospace"></div>
+    <canvas style="display: none"></canvas>
+</div>
+
+<script src="libv86.js"></script>
+<script>
+    window.onload = function() {
+        var emulator = new V86Starter({
+            wasm_path: "v86.wasm",
+            memory_size: 128 * 1024 * 1024, // 128MB
+            vga_bios: { url: "vgabios.bin" },
+            bios: { url: "seabios.bin" },
+            cdrom: { url: "https://github.com/realgptv01/Completely-AI-Generated-OS/releases/download/v0.4/myos.iso" },
+            autostart: true,
+            screen_container: document.getElementById("screen_container"),
+        });
+    };
+</script>
